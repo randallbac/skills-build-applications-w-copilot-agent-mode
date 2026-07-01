@@ -16,7 +16,11 @@ const baseUrl = codespaceName
   ? `https://${codespaceName}-8000.app.github.dev`
   : 'http://localhost:8000';
 
-app.use(cors());
+const corsOrigins = codespaceName
+  ? [`https://${codespaceName}-5173.app.github.dev`, `https://${codespaceName}-8000.app.github.dev`]
+  : ['http://localhost:5173', 'http://localhost:8000'];
+
+app.use(cors({ origin: corsOrigins }));
 app.use(express.json());
 
 connectDB().catch((err) => console.error('MongoDB connection error:', err));
