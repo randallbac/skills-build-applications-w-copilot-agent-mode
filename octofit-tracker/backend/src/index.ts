@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import mongoose from 'mongoose';
+import connectDB from './database';
 
 import usersRouter from './routes/users';
 import teamsRouter from './routes/teams';
@@ -19,10 +19,7 @@ const baseUrl = codespaceName
 app.use(cors());
 app.use(express.json());
 
-mongoose
-  .connect('mongodb://localhost:27017/octofit_db')
-  .then(() => console.log('Connected to MongoDB (octofit_db)'))
-  .catch((err) => console.error('MongoDB connection error:', err));
+connectDB().catch((err) => console.error('MongoDB connection error:', err));
 
 app.get('/api/', (_req, res) => {
   res.json({ message: 'OctoFit Tracker API', baseUrl });
