@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import connectDB from './database';
+import connectDB from './config/database';
 
 import usersRouter from './routes/users';
 import teamsRouter from './routes/teams';

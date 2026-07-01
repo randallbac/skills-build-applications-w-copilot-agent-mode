@@ -5,7 +5,7 @@
  *   npx ts-node src/scripts/seed.ts
  */
 
-import connectDB from '../database';
+import connectDB from '../config/database';
 import mongoose from 'mongoose';
 import User from '../models/User';
 import Team from '../models/Team';
