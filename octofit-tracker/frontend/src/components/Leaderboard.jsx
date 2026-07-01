@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react';
-import { API_BASE, toArray } from '../api';
+import { toArray } from '../api';
+
+const apiUrl = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`
+  : 'http://localhost:8000/api/leaderboard/';
 
 export default function Leaderboard() {
   const [entries, setEntries] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/leaderboard/`)
+    fetch(apiUrl)
       .then((r) => r.json())
       .then((data) => setEntries(toArray(data)))
       .catch(() => setError('Failed to load leaderboard.'));
